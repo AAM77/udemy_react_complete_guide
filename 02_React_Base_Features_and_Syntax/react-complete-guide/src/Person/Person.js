@@ -7,4 +7,6 @@ const person = () => {
 }
 
 export default person;
-// this exports the function 'person'
+// this exports the 'person' constant that holds the function
+// we can now start using this functional component in other parts of our
+// project.

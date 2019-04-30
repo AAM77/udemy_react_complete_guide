@@ -1,12 +1,21 @@
 import React from 'react';
 import './App.css';
+import Person from './Person/Person.js';
+//We can use any name we want to represent the imported data
+//But, the convention is to use the same name as the file
+//we are importing with a capitalized first letter
+//We could make it all lower case, but lower case keywords in JSX
+//are generally reserved for representing html elements.
 
 function App() {
   return (
     <div className="App">
       <h1>Hi, I'm a React App</h1>
       <p>This is really working!</p>
+      <Person />
     </div>
+
+
     // <h1>This is another heading</h1>
     // generally, we cannot (and should not) put another element
     // below the above code.
