@@ -3,8 +3,11 @@ import React from 'react';
 // or creating a component here. We are creating a function.
 
 const person = () => {
-  return <p>I'm a person!</p>
+  return <p>I'm a person and I am {Math.floor(Math.random() * 30)} years old!</p>
 }
+
+//we can pass dynamic content to JSX lines by placing the code
+//for generating the dynamic content in beween curly braces.
 
 export default person;
 // this exports the 'person' constant that holds the function
