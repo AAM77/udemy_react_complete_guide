@@ -10,3 +10,10 @@ export default person;
 // this exports the 'person' constant that holds the function
 // we can now start using this functional component in other parts of our
 // project.
+
+
+// NOTE:
+// This type of component is called a 'functional' or 'presentational' component.
+// This is because it is 'stateless'
+
+// This differs from a class based component, which is 'stateful'

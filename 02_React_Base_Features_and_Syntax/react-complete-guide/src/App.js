@@ -13,6 +13,8 @@ function App() {
       <h1>Hi, I'm a React App</h1>
       <p>This is really working!</p>
       <Person />
+      // Components are great because we can reuse large amounts
+      // of repetitive code with easy
     </div>
 
 
