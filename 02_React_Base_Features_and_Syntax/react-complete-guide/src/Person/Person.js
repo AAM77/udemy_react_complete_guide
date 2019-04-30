@@ -3,7 +3,12 @@ import React from 'react';
 // or creating a component here. We are creating a function.
 
 const person = (props) => {
-  return <p>I'm {props.name} and I am {props.age} years old!</p>
+  return (
+    <div>
+      <p>I'm {props.name} and I am {props.age} years old!</p>
+      <p>{props.children}</p>
+    </div>
+  )
 }
 
 //we can pass dynamic content to JSX lines by placing the code
