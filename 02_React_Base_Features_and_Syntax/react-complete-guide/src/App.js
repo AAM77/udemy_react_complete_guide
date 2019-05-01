@@ -13,11 +13,25 @@ class App extends Component {
       { name: 'Max', age: '28' },
       { name: 'Manu', age: '29' },
       { name: 'Stephanie', age: '26' }
-    ]
+    ],
+    otherState: 'some other value'
   }
 
   switchNameHandler = () => {
-    console.log('Was clicked');
+    //console.log('Was clicked');
+    // DON'T DO THIS: this.state.persons[0].name = 'Maximilian'
+    this.setState({
+      persons: [
+        { name: 'Maximilian', age: '28' },
+        { name: 'Manu', age: '29' },
+        { name: 'Stephanie', age: '27' }
+      ]
+    } )
+    // setState will not override the entire state.
+    // instead, it will merge the changes for the property
+    // we are altering, while leaving all other properties
+    // (like 'otherState') unchanged (i.e. it doesn't touch
+    // those other properties)
   }
 
   render() {
