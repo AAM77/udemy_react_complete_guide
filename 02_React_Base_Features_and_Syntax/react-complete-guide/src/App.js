@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person.js';
 //We can use any name we want to represent the imported data
@@ -7,26 +7,38 @@ import Person from './Person/Person.js';
 //We could make it all lower case, but lower case keywords in JSX
 //are generally reserved for representing html elements.
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hi, I'm a React App</h1>
-      <p>This is really working!</p>
-      <Person name="Max" age="28" />
-      <Person name="Manu" age="29" >Hobbie: Racing</Person>
-      <Person name="Stephanie" age="26"/>
-    </div>
+class App extends Component {
+  state = {
+    persons: [
+      { name: 'Max', age: '28' },
+      { name: 'Manu', age: '29' },
+      { name: 'Stephanie', age: '26' }
+    ]
+  }
 
-    // Components are great because we can reuse large amounts
-    // of repetitive code with easy
+  render() {
+
+    return (
+      <div className="App">
+        <h1>Hi, I'm a React App</h1>
+        <p>This is really working!</p>
+        <button>Switch Name</button>
+        <Person name={ this.state.persons[0].name } age={ this.state.persons[0].age }/>
+        <Person name={ this.state.persons[1].name } age={ this.state.persons[1].age }>Hobbie: Racing</Person>
+        <Person name={ this.state.persons[2].name } age={ this.state.persons[2].age }/>
+      </div>
+
+      // Components are great because we can reuse large amounts
+      // of repetitive code with easy
 
 
-    // <h1>This is another heading</h1>
-    // generally, we cannot (and should not) put another element
-    // below the above code.
-    // It is convention to have only one root element per component
-    // everything else gets nested in this one root element that we return
-  );
+      // <h1>This is another heading</h1>
+      // generally, we cannot (and should not) put another element
+      // below the above code.
+      // It is convention to have only one root element per component
+      // everything else gets nested in this one root element that we return
+    );
+  }
 }
 
 export default App;
