@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Person from './Person/Person.js';
 //We can use any name we want to represent the imported data
@@ -7,56 +7,70 @@ import Person from './Person/Person.js';
 //We could make it all lower case, but lower case keywords in JSX
 //are generally reserved for representing html elements.
 
-class App extends Component {
-  state = {
+const App = props => {
+  const [ personsState, setPersonsState ] = useState({
     persons: [
       { name: 'Max', age: '28' },
       { name: 'Manu', age: '29' },
       { name: 'Stephanie', age: '26' }
-    ],
-    otherState: 'some other value'
-  }
+    ]
+  });
 
-  switchNameHandler = () => {
+  const switchNameHandler = () => {
     //console.log('Was clicked');
     // DON'T DO THIS: this.state.persons[0].name = 'Maximilian'
-    this.setState({
+    setPersonsState({
       persons: [
         { name: 'Maximilian', age: '28' },
         { name: 'Manu', age: '29' },
         { name: 'Stephanie', age: '27' }
       ]
-    } )
-    // setState will not override the entire state.
-    // instead, it will merge the changes for the property
-    // we are altering, while leaving all other properties
-    // (like 'otherState') unchanged (i.e. it doesn't touch
-    // those other properties)
-  }
+    });
+  };
 
-  render() {
+  // the more elegant way is to make multiple calls to useState
+  // for multiple properties
+  const [otherState, setOtherState] = useState('some other value');
 
-    return (
-      <div className="App">
-        <h1>Hi, I'm a React App</h1>
-        <p>This is really working!</p>
-        <button onClick={this.switchNameHandler}>Switch Name</button>
-        <Person name={ this.state.persons[0].name } age={ this.state.persons[0].age }/>
-        <Person name={ this.state.persons[1].name } age={ this.state.persons[1].age }>Hobbie: Racing</Person>
-        <Person name={ this.state.persons[2].name } age={ this.state.persons[2].age }/>
-      </div>
+  console.log(personsState, otherState);
 
-      // Components are great because we can reuse large amounts
-      // of repetitive code with easy
+  // One important difference here (functional component) vs.
+  // the class component we had before, is that when we change
+  // our setPersonsState, the content is NO LONGER merged.
+  // It gets REPLACED, instead.
+
+  return (
+    <div className="App">
+      <h1>Hi, I'm a React App</h1>
+      <p>This is really working!</p>
+      <button onClick={switchNameHandler}>Switch Name</button>
+      <Person
+        name={ personsState.persons[0].name }
+        age={ personsState.persons[0].age }
+      />
+
+      <Person
+        name={ personsState.persons[1].name }
+        age={ personsState.persons[1].age }>
+          My Hobbies: Racing
+      </Person>
+
+      <Person
+        name={ personsState.persons[2].name }
+        age={ personsState.persons[2].age }
+      />
+    </div>
+
+    // Components are great because we can reuse large amounts
+    // of repetitive code with easy
 
 
-      // <h1>This is another heading</h1>
-      // generally, we cannot (and should not) put another element
-      // below the above code.
-      // It is convention to have only one root element per component
-      // everything else gets nested in this one root element that we return
-    );
-  }
+    // <h1>This is another heading</h1>
+    // generally, we cannot (and should not) put another element
+    // below the above code.
+    // It is convention to have only one root element per component
+    // everything else gets nested in this one root element that we return
+  );
 }
 
 export default App;
@@ -74,3 +88,31 @@ export default App;
 // // React.createElement(args) can take an infinite number number of arguments.
 // // Writing the code with React.createElement(args) would be
 // // very cumbersome, however, so the syntactive sugar in JSX is necessary
+
+
+
+// state = {
+//   persons: [
+//     { name: 'Max', age: '28' },
+//     { name: 'Manu', age: '29' },
+//     { name: 'Stephanie', age: '26' }
+//   ],
+//   otherState: 'some other value'
+// }
+//
+// switchNameHandler = () => {
+//   //console.log('Was clicked');
+//   // DON'T DO THIS: this.state.persons[0].name = 'Maximilian'
+//   this.setState({
+//     persons: [
+//       { name: 'Maximilian', age: '28' },
+//       { name: 'Manu', age: '29' },
+//       { name: 'Stephanie', age: '27' }
+//     ]
+//   } )
+//   // setState will not override the entire state.
+//   // instead, it will merge the changes for the property
+//   // we are altering, while leaving all other properties
+//   // (like 'otherState') unchanged (i.e. it doesn't touch
+//   // those other properties)
+// }
