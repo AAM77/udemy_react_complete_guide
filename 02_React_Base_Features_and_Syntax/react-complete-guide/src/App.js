@@ -33,12 +33,25 @@ class App extends Component {
     });
   }
 
+  // in-line styles are scoped to this element/component
+  // use in-line styles when you want to scope it to only one element/Component
+  // use css files when you want global styling or an entire component
   render() {
+    const style = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    };
+
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p>This is really working!</p>
-        <button onClick={() => this.switchNameHandler('Maximilian')}>Switch Name</button>
+        <button
+          style={style}
+          onClick={() => this.switchNameHandler('Maximilian')}>Switch Name</button>
         <Person
           name={ this.state.persons[0].name }
           age={ this.state.persons[0].age }
