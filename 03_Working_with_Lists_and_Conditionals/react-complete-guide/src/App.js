@@ -35,9 +35,8 @@ class App extends Component {
   }
 
   togglePersonsHandler = () => {
-    this.state.showPersons ?
-      this.setState({showPersons: false}) :
-      this.setState({showPersons: true})
+    const doesShow = this.state.showPersons;
+    this.setState({showPersons: !doesShow})
   }
 
   // in-line styles are scoped to this element/component
