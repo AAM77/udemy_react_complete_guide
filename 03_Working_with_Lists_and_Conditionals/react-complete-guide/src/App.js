@@ -6,9 +6,9 @@ class App extends Component {
 
   state = {
     persons: [
-      { name: 'Max', age: '28' },
-      { name: 'Manu', age: '29' },
-      { name: 'Stephanie', age: '26' }
+      { id: 1, name: 'Max', age: '28' },
+      { id: 2, name: 'Manu', age: '29' },
+      { id: 3, name: 'Stephanie', age: '26' }
     ],
     otherState: 'some other value',
     showPersons: false
@@ -47,6 +47,19 @@ class App extends Component {
       cursor: 'pointer'
     };
 
+    // without a key propery in the mapped components,
+    // react re-renders the ENTIRE list!
+    // With the key property present, react can efficiently
+    // evaluate which elements changed and which did not.
+    // This way, it only re-renders the elements that DID change.
+    // This is FAR more efficient.
+
+    // !!NOTE!!: Using 'index' to assign a key is only good to remove
+    // the error. It DOES NOT help react efficiently locate and
+    // render the correct components. Therefore, it renders
+    // everything again.
+    // add unique IDs to the data objects instead!
+
     let persons = null;
 
     if (this.state.showPersons) {
@@ -56,7 +69,7 @@ class App extends Component {
             return(
               <Person
                 click={() => this.deletePersonHandler(index)}
-                key={index}
+                key={ person.id }
                 name={ person.name }
                 age={ person.age }
               />
